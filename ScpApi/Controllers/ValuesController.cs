@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Elasticsearch.Net;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ScpApi.Controllers
 {
     [Route("api/[controller]")]
+    [DisableCors]
     [ApiController]
     public class ValuesController : ControllerBase
     {
@@ -14,7 +17,41 @@ namespace ScpApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var lowlevelClient = new ElasticLowLevelClient();
+            var person = new
+            {
+                FirstName = "Martijn",
+                LastName = "Laarman"
+            };
+
+            // Index to /people/person/1
+            var indexResponse = lowlevelClient.Index<BytesResponse>("people", "person", "1", PostData.Serializable(person)); 
+            byte[] responseBytes = indexResponse.Body;
+            Console.WriteLine(responseBytes.ToString());
+
+            return new string[] { "value1", "value2", FetchResults() };
+        }
+
+        public string FetchResults()
+        {
+            var lowlevelClient = new ElasticLowLevelClient();
+            var searchResponse = lowlevelClient.Search<StringResponse>("people", "person", PostData.Serializable(new
+            {
+                from = 0,
+                size = 10,
+                query = new
+                {
+                    multi_match = new
+                    {
+                        fields = (new string[] {"FirstName"}),
+                        query = "Martijn"
+                    }
+                }
+            }));
+
+            var successful = searchResponse.Success;
+            var responseJson = searchResponse.Body;
+            return responseJson;
         }
 
         // GET api/values/5

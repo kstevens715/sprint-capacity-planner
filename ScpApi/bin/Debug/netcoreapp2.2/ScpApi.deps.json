@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "b36818a78e1460eed609d6d51b385bb3652a4f45"
+    "signature": "264502abec8e207064e01213e4b41021314d163b"
   },
   "compilationOptions": {
     "defines": [
@@ -24,7 +24,9 @@
     ".NETCoreApp,Version=v2.2": {
       "ScpApi/1.0.0": {
         "dependencies": {
+          "Elasticsearch.Net": "6.4.2",
           "Microsoft.AspNetCore.App": "2.2.0",
+          "Microsoft.AspNetCore.Cors": "1.0.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0"
         },
@@ -33,6 +35,34 @@
         },
         "compile": {
           "ScpApi.dll": {}
+        }
+      },
+      "Elasticsearch.Net/6.4.2": {
+        "runtime": {
+          "lib/netstandard2.0/Elasticsearch.Net.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.4.2.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Elasticsearch.Net.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Cors/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.AspNetCore.Cors.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.20622"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.AspNetCore.Cors.dll": {}
         }
       },
       "Microsoft.NETCore.App/2.2.0": {
@@ -276,7 +306,7 @@
           "Microsoft.AspNetCore.Authorization.Policy": "2.2.0",
           "Microsoft.AspNetCore.Connections.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.CookiePolicy": "2.2.0",
-          "Microsoft.AspNetCore.Cors": "2.2.0",
+          "Microsoft.AspNetCore.Cors": "1.0.0",
           "Microsoft.AspNetCore.Cryptography.Internal": "2.2.0",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "2.2.0",
           "Microsoft.AspNetCore.DataProtection": "2.2.0",
@@ -571,19 +601,6 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.CookiePolicy.dll": {}
-        },
-        "compileOnly": true
-      },
-      "Microsoft.AspNetCore.Cors/2.2.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
-          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
-          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
-          "Microsoft.Extensions.Options": "2.2.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Cors.dll": {}
         },
         "compileOnly": true
       },
@@ -987,7 +1004,7 @@
       },
       "Microsoft.AspNetCore.Mvc.Cors/2.2.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.Cors": "2.2.0",
+          "Microsoft.AspNetCore.Cors": "1.0.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.0"
         },
         "compile": {
@@ -3227,6 +3244,20 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Elasticsearch.Net/6.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VNhEAOICcmHRLOuow8+iKYRZyZ0SxaTqXTOBpYUTsa7rJg3EUpKJv08ePo7mz7PUWHTBtSLsan2bpbnBn9sdrA==",
+      "path": "elasticsearch.net/6.4.2",
+      "hashPath": "elasticsearch.net.6.4.2.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Cors/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FRPEQPVDgVXRDquYrNiKarvhyLEbbRj7cMummFScFQ93g50oUvZdGxxmzowj+DllJ3RWd9NoN7+5o6OIJTFOMQ==",
+      "path": "microsoft.aspnetcore.cors/1.0.0",
+      "hashPath": "microsoft.aspnetcore.cors.1.0.0.nupkg.sha512"
+    },
     "Microsoft.NETCore.App/2.2.0": {
       "type": "package",
       "serviceable": true,
@@ -3415,13 +3446,6 @@
       "sha512": "sha512-KH1oXkZwaHCNC+BCaZi09wwhM1L/eHK/3Ltiy9pJUgiJ7heghJYJYSfocUI+CNUihXA/FeFBrxEnEFvAh6x2uQ==",
       "path": "microsoft.aspnetcore.cookiepolicy/2.2.0",
       "hashPath": "microsoft.aspnetcore.cookiepolicy.2.2.0.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.Cors/2.2.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-YFStDzy8d4YgY09eY3pdWzQ/uVaqufxDF3Lax5N6gaDWIkTcflAAEbIxzeuVtalzyBSRqgOKIsmqYMoXsQYPvg==",
-      "path": "microsoft.aspnetcore.cors/2.2.0",
-      "hashPath": "microsoft.aspnetcore.cors.2.2.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/2.2.0": {
       "type": "package",
