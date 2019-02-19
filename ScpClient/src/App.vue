@@ -1,29 +1,21 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App, Kyle"/>
+  <div id="app" class="container">
+    <h1>Sprint Capacity Planner</h1>
+    <Sprint />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import Sprint from './components/Sprint.vue';
 
 export default Vue.extend({
   name: 'app',
   components: {
-    HelloWorld,
+    Sprint,
   },
 });
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

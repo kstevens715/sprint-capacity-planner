@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Cors" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Elasticsearch.Net" Version="6.4.2" />
-    <PackageReference Include="NEST" />
+    <PackageReference Include="NEST" version="6.4.2" />
   </ItemGroup>
 
 </Project>

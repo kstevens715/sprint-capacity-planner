@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "264502abec8e207064e01213e4b41021314d163b"
+    "signature": "78bfe56ad1e3c8e0f0189e68e513205c4b07dacf"
   },
   "compilationOptions": {
     "defines": [
@@ -28,7 +28,8 @@
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Cors": "1.0.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
-          "Microsoft.NETCore.App": "2.2.0"
+          "Microsoft.NETCore.App": "2.2.0",
+          "NEST": "6.4.2"
         },
         "runtime": {
           "ScpApi.dll": {}
@@ -231,6 +232,20 @@
       },
       "Microsoft.NETCore.Platforms/2.2.0": {},
       "Microsoft.NETCore.Targets/2.0.0": {},
+      "NEST/6.4.2": {
+        "dependencies": {
+          "Elasticsearch.Net": "6.4.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Nest.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.4.2.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Nest.dll": {}
+        }
+      },
       "NETStandard.Library/2.0.3": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.2.0"
@@ -3299,6 +3314,13 @@
       "sha512": "sha512-odP/tJj1z6GylFpNo7pMtbd/xQgTC3Ex2If63dRTL38bBNMwsBnJ+RceUIyHdRBC0oik/3NehYT+oECwBhIM3Q==",
       "path": "microsoft.netcore.targets/2.0.0",
       "hashPath": "microsoft.netcore.targets.2.0.0.nupkg.sha512"
+    },
+    "NEST/6.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HGr6wVxPHTv0a3vMcR9UMw278WE1584ManpKssQYN9vSAqXzt51wHpwtpC2jIIO0ffAkq/PL+ihyRoljor2p3g==",
+      "path": "nest/6.4.2",
+      "hashPath": "nest.6.4.2.nupkg.sha512"
     },
     "NETStandard.Library/2.0.3": {
       "type": "package",

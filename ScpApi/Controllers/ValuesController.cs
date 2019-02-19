@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Elasticsearch.Net;
+using Nest;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
+using ScpApi.Models;
 
 namespace ScpApi.Controllers
 {
@@ -13,70 +15,55 @@ namespace ScpApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+
+        [HttpPost]
+        public void Post([FromBody] Sprint sprint)
         {
-            var lowlevelClient = new ElasticLowLevelClient();
-            var person = new
-            {
-                FirstName = "Martijn",
-                LastName = "Laarman"
-            };
-
-            // Index to /people/person/1
-            var indexResponse = lowlevelClient.Index<BytesResponse>("people", "person", "1", PostData.Serializable(person)); 
-            byte[] responseBytes = indexResponse.Body;
-            Console.WriteLine(responseBytes.ToString());
-
-            return new string[] { "value1", "value2", FetchResults() };
+            Console.WriteLine(sprint.Name);
         }
-
-        public string FetchResults()
-        {
-            var lowlevelClient = new ElasticLowLevelClient();
-            var searchResponse = lowlevelClient.Search<StringResponse>("people", "person", PostData.Serializable(new
-            {
-                from = 0,
-                size = 10,
-                query = new
-                {
-                    multi_match = new
-                    {
-                        fields = (new string[] {"FirstName"}),
-                        query = "Martijn"
-                    }
-                }
-            }));
-
-            var successful = searchResponse.Success;
-            var responseJson = searchResponse.Body;
-            return responseJson;
-        }
-
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public JsonResult Get(string id)
         {
-            return "value";
+            var client = BuildClient();
+            IndexRecord(client, id);
+            Console.WriteLine(id);
+            var sp = client.Get<Sprint>(id, idx => idx.Index("sprintnewerest"));
+            return new JsonResult(sp.Source);
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
+        public Nest.ElasticClient BuildClient()
         {
+            var node = new Uri("http://127.0.0.1:9200");
+            var settings = new ConnectionSettings(node).DefaultIndex("sprintnewerest");
+            return new ElasticClient(settings);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void IndexRecord(ElasticClient client, string id)
         {
-        }
+            var sprint = new Sprint()
+            {              
+                Id = id,
+                Name = "Spr1",
+            };
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var personSprint = new TeamMemberSprint()
+            {
+                Name = "Kyle",
+                DaysAvailableBeforeFF = 8,
+                DaysAvailableAfterFF = 10,
+            };
+
+            var breakdown = new Breakdown()
+            {
+                Name = "Sprint 1",
+                TargetPercent = 50.0m,
+            };
+
+            sprint.TeamMemberSprints.Add(personSprint);
+            sprint.Breakdowns.Add(breakdown);
+            var indexResponse = client.IndexDocument(sprint);
+            Console.WriteLine(indexResponse.Id);
         }
     }
 }

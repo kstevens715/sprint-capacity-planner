@@ -2717,16 +2717,16 @@
           }
         }
       },
-      "NEST/0.9.0.2": {
+      "NEST/6.4.2": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "(, )"
+          "Elasticsearch.Net": "6.4.2"
         },
         "compile": {
-          "lib/NET4/Nest.dll": {}
+          "lib/netstandard2.0/Nest.dll": {}
         },
         "runtime": {
-          "lib/NET4/Nest.dll": {}
+          "lib/netstandard2.0/Nest.dll": {}
         }
       },
       "NETStandard.Library/2.0.3": {
@@ -7244,15 +7244,18 @@
         "version.txt"
       ]
     },
-    "NEST/0.9.0.2": {
-      "sha512": "LFKjARw8uBu4lLwpKF8ImypQTeHhmhEy9O2jJKLOiYH47bHP8T8BavA4HwyIzlc5QCOqj7JPM2/iAykSCPh58A==",
+    "NEST/6.4.2": {
+      "sha512": "HGr6wVxPHTv0a3vMcR9UMw278WE1584ManpKssQYN9vSAqXzt51wHpwtpC2jIIO0ffAkq/PL+ihyRoljor2p3g==",
       "type": "package",
-      "path": "nest/0.9.0.2",
+      "path": "nest/6.4.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/NET4/Nest.dll",
-        "nest.0.9.0.2.nupkg.sha512",
+        "lib/net461/Nest.dll",
+        "lib/net461/Nest.xml",
+        "lib/netstandard2.0/Nest.dll",
+        "lib/netstandard2.0/Nest.xml",
+        "nest.6.4.2.nupkg.sha512",
         "nest.nuspec"
       ]
     },
@@ -12120,7 +12123,7 @@
       "Microsoft.AspNetCore.Cors",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
-      "NEST"
+      "NEST >= 6.4.2"
     ]
   },
   "packageFolders": {
@@ -12189,7 +12192,7 @@
           },
           "NEST": {
             "target": "Package",
-            "version": "(, )"
+            "version": "[6.4.2, )"
           }
         },
         "imports": [
@@ -12207,36 +12210,6 @@
       "warningLevel": 1,
       "message": "Project dependency Microsoft.AspNetCore.Cors does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results.",
       "libraryId": "Microsoft.AspNetCore.Cors",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.2"
-      ]
-    },
-    {
-      "code": "NU1604",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Project dependency NEST does not contain an inclusive lower bound. Include a lower bound in the dependency version to ensure consistent restore results.",
-      "libraryId": "NEST",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.2"
-      ]
-    },
-    {
-      "code": "NU1602",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "NEST 0.9.0.2 does not provide an inclusive lower bound for dependency Newtonsoft.Json. An approximate best match of Newtonsoft.Json 3.5.8 was resolved.",
-      "libraryId": "Newtonsoft.Json",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.2"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'NEST 0.9.0.2' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.2'. This package may not be fully compatible with your project.",
-      "libraryId": "NEST",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.2"
       ]
