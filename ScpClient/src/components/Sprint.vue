@@ -18,41 +18,43 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import VueResource from 'vue-resource';
+import { HttpResponse } from 'vue-resource/types/vue_resource';
 
 export default Vue.extend({
   name: 'Sprint',
-  data: function() {
+  data: () => {
     return {
       name: 'Sprint 1',
       startDate: null,
       endDate: null,
-    } 
+    };
   },
   props: {
     msg: String,
   },
   methods: {
-    saveForm: function() {
-      var formData = {
-        name: <string>this.name,
+    saveForm(): void {
+      const formData = {
+        name: (this.name as string),
         startDate: this.startDate,
         endDate: this.endDate,
-      }
-      //TODO: Use Axios instead
-      this.$http.post('http://localhost:5000/api/values', formData).then(response => {
-        console.log("test");
-      }, response => {
-        console.log(response);
-      })
-    }
+      };
+      // TODO: Use Axios instead
+      this.$http.post('http://localhost:5000/api/values', formData).then((response: HttpResponse) => {
+        console.log('test');
+      }, (response: HttpResponse) => {
+        console.log(response.json());
+      });
+    },
   },
-  created: function() {
-    this.$http.get('http://localhost:5000/api/values/1234').then(response => {
-      console.log(response.body)
-    }, response => {
+  created(): void {
+    this.$http.get('http://localhost:5000/api/values/1234').then((response: HttpResponse) => {
+      console.log(response.json());
+    }, (response: HttpResponse) => {
       // error callback
     });
-  }
+  },
 });
 </script>
 

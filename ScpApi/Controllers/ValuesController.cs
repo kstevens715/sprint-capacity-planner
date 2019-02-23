@@ -28,14 +28,14 @@ namespace ScpApi.Controllers
             var client = BuildClient();
             IndexRecord(client, id);
             Console.WriteLine(id);
-            var sp = client.Get<Sprint>(id, idx => idx.Index("sprintnewerest"));
+            var sp = client.Get<Sprint>(id, idx => idx.Index("sprintnewerestv2"));
             return new JsonResult(sp.Source);
         }
 
         public Nest.ElasticClient BuildClient()
         {
             var node = new Uri("http://127.0.0.1:9200");
-            var settings = new ConnectionSettings(node).DefaultIndex("sprintnewerest");
+            var settings = new ConnectionSettings(node).DefaultIndex("sprintnewerestv2");
             return new ElasticClient(settings);
         }
 
