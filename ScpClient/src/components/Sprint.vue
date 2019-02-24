@@ -17,9 +17,8 @@
 </template>
 
 <script lang="ts">
+import axios, { AxiosResponse } from 'axios';
 import Vue from 'vue';
-import VueResource from 'vue-resource';
-import { HttpResponse } from 'vue-resource/types/vue_resource';
 
 export default Vue.extend({
   name: 'Sprint',
@@ -41,18 +40,16 @@ export default Vue.extend({
         endDate: this.endDate,
       };
       // TODO: Use Axios instead
-      this.$http.post('http://localhost:5000/api/sprints', formData).then((response: HttpResponse) => {
+      axios.post('http://localhost:5000/api/sprints', formData).then((response: AxiosResponse) => {
         console.log('test');
-      }, (response: HttpResponse) => {
-        console.log(response.json());
+      }).catch((response: AxiosResponse) => {
+        console.log(response.status);
       });
     },
   },
   created(): void {
-    this.$http.get('http://localhost:5000/api/sprints/1234').then((response: HttpResponse) => {
-      console.log(response.json());
-    }, (response: HttpResponse) => {
-      // error callback
+    axios.post('http://localhost:5000/api/sprints/1234').then((response: AxiosResponse) => {
+      console.log(response.data);
     });
   },
 });
