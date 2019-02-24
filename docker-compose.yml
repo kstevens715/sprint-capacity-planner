@@ -17,7 +17,14 @@ services:
       - 9200:9200
     networks:
       - esnet
-
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.5.4
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    networks:
+      - esnet
 volumes:
   esdata:
     driver: local
