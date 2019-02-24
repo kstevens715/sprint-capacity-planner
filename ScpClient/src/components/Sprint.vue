@@ -41,7 +41,7 @@ export default Vue.extend({
         endDate: this.endDate,
       };
       // TODO: Use Axios instead
-      this.$http.post('http://localhost:5000/api/values', formData).then((response: HttpResponse) => {
+      this.$http.post('http://localhost:5000/api/sprints', formData).then((response: HttpResponse) => {
         console.log('test');
       }, (response: HttpResponse) => {
         console.log(response.json());
@@ -49,7 +49,7 @@ export default Vue.extend({
     },
   },
   created(): void {
-    this.$http.get('http://localhost:5000/api/values/1234').then((response: HttpResponse) => {
+    this.$http.get('http://localhost:5000/api/sprints/1234').then((response: HttpResponse) => {
       console.log(response.json());
     }, (response: HttpResponse) => {
       // error callback
