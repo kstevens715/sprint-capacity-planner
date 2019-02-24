@@ -1,5 +1,6 @@
 using Nest;
 using System;
+using System.Collections;
 using ScpApi.Models;
 
 namespace ScpApi.Repositories
@@ -15,6 +16,15 @@ namespace ScpApi.Repositories
             var sprintResponse = client.Get<Sprint>(id, idx => idx.Index(IndexName));
 
             return sprintResponse.Source;
+        }
+
+        public static IEnumerable GetAllSprints()
+        {
+            var client = BuildClient();
+            var sprintResponse = client.Search<Sprint>();
+
+            var sprints = sprintResponse.Documents;
+            return sprints;
         }
 
         public static void SaveSprint(Sprint sprint)

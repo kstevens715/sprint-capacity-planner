@@ -17,19 +17,27 @@ namespace ScpApi.Controllers
     {
 
         [HttpPost]
-        public void Post([FromBody] Sprint sprint)
+        public void Create([FromBody] Sprint sprint)
         {
             SprintRepository.SaveSprint(sprint);
             Console.WriteLine(sprint.Name);
         }
 
+        [HttpGet()]
+        public JsonResult Index()
+        {
+            var sprints = SprintRepository.GetAllSprints();
+
+            return new JsonResult(sprints);
+        }
+
         [HttpGet("{id}")]
-        public JsonResult Get(string id)
+        public JsonResult Show(string id)
         {
             SprintRepository.IndexRecord("1234");
-            Sprint Sprint = SprintRepository.GetSprint(id);
+            Sprint sprint = SprintRepository.GetSprint(id);
 
-            return new JsonResult(Sprint);
+            return new JsonResult(sprint);
         }
     }
 }
