@@ -39,18 +39,12 @@ export default Vue.extend({
         startDate: this.startDate,
         endDate: this.endDate,
       };
-      // TODO: Use Axios instead
       axios.post('http://localhost:5000/api/sprints', formData).then((response: AxiosResponse) => {
         console.log('test');
       }).catch((response: AxiosResponse) => {
         console.log(response.status);
       });
     },
-  },
-  created(): void {
-    axios.post('http://localhost:5000/api/sprints/1234').then((response: AxiosResponse) => {
-      console.log(response.data);
-    });
   },
 });
 </script>
