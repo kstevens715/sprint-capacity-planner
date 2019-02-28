@@ -1,8 +1,16 @@
 <template>
-  <div id="app" class="container">
-    <h1>Sprint Capacity Planner</h1>
-    <Sprint />
-    <SprintsTable />
+  <div id="app">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Sprint Capacity Planner</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">New Sprint</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="container">
+      <SprintsTable />
+     </div>
   </div>
 </template>
 
@@ -15,7 +23,7 @@ export default Vue.extend({
   name: 'app',
   components: {
     Sprint,
-    SprintsTable
+    SprintsTable,
   },
 });
 </script>
