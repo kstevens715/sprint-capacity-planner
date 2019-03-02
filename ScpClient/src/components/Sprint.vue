@@ -40,7 +40,7 @@ export default Vue.extend({
         endDate: this.endDate,
       };
       axios.post('http://localhost:5000/api/sprints', formData).then((response: AxiosResponse) => {
-        console.log('test');
+        this.$router.push('/');
       }).catch((response: AxiosResponse) => {
         console.log(response.status);
       });
