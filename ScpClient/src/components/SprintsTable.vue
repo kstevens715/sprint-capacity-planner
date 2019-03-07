@@ -20,19 +20,11 @@
 </template>
 
 <script lang="ts">
-import axios, { AxiosResponse } from 'axios';
 import Vue from 'vue';
 
 export default Vue.extend({
-  data: () => {
-    return {
-      sprints: [],
-    };
-  },
-  created(): void {
-    axios.get('http://localhost:5000/api/sprints').then((response: AxiosResponse) => {
-      this.sprints = response.data;
-    });
+  props: {
+    sprints: Array,
   },
 });
 </script>

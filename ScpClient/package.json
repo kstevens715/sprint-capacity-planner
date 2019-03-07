@@ -17,6 +17,8 @@
     "@vue/cli-plugin-typescript": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
     "typescript": "^3.0.0",
+    "vue-class-component": "^7.0.1",
+    "vue-property-decorator": "^8.0.0",
     "vue-template-compiler": "^2.5.21"
   },
   "postcss": {

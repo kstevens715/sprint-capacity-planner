@@ -17,10 +17,11 @@ namespace ScpApi.Controllers
     {
 
         [HttpPost]
-        public void Create([FromBody] Sprint sprint)
+        public JsonResult Create([FromBody] Sprint sprint)
         {
             SprintRepository.SaveSprint(sprint);
-            Console.WriteLine(sprint.Name);
+
+            return new JsonResult(sprint);
         }
 
         [HttpGet()]

@@ -19,35 +19,26 @@
 <script lang="ts">
 import axios, { AxiosResponse } from 'axios';
 import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
 
-export default Vue.extend({
-  name: 'Sprint',
-  data: () => {
-    return {
-      name: 'Sprint 1',
-      startDate: null,
-      endDate: null,
+@Component
+export default class Sprint extends Vue {
+  private name: string = 'Sprint 1';
+  private startDate: string | null = null;
+  private endDate: string | null = null;
+
+  private saveForm(): void {
+    const formData = {
+      name: (this.name as string),
+      startDate: this.startDate,
+      endDate: this.endDate,
     };
-  },
-  props: {
-    msg: String,
-  },
-  methods: {
-    saveForm(): void {
-      const formData = {
-        name: (this.name as string),
-        startDate: this.startDate,
-        endDate: this.endDate,
-      };
-      axios.post('http://localhost:5000/api/sprints', formData).then((response: AxiosResponse) => {
-        this.$router.push('/');
-      }).catch((response: AxiosResponse) => {
-        console.log(response.status);
-      });
-    },
-  },
-});
+    axios.post('http://localhost:5000/api/sprints', formData).then((response: AxiosResponse) => {
+      this.$router.push('/');
+      this.$emit('sprintCreated', response);
+    }).catch((response: AxiosResponse) => {
+      console.log(response.status);
+    });
+  }
+}
 </script>
-
-<style scoped>
-</style>
