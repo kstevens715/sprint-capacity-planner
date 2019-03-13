@@ -21,7 +21,7 @@ namespace ScpApi.Repositories
         public static IEnumerable GetAllSprints()
         {
             var client = BuildClient();
-            var sprintResponse = client.Search<Sprint>();
+            var sprintResponse = client.Search<Sprint>(s => s.Size(100));
 
             var sprints = sprintResponse.Documents;
             return sprints;
