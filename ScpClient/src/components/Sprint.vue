@@ -1,18 +1,19 @@
 <template>
-  <div>
-    <div class="list-group">
-      <a href="#" class="list-group-item list-group-item-action active">
-        General
-      </a>
-      <a href="#" class="list-group-item list-group-item-action">Team Members</a>
-      <a href="#" class="list-group-item list-group-item-action">Breakdown</a>
-      <a href="#" class="list-group-item list-group-item-action">Charts</a>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action" @click="currentSection = SprintSection.General" :class="{ active: (currentSection == SprintSection.General)}">General</a>
+          <a href="#" class="list-group-item list-group-item-action" @click="currentSection = SprintSection.TeamMembers" :class="{ active: (currentSection == SprintSection.TeamMembers)}">Team Members</a>
+          <a href="#" class="list-group-item list-group-item-action" @click="currentSection = SprintSection.Breakdown" :class="{ active: (currentSection == SprintSection.Breakdown)}">Breakdown</a>
+          <a href="#" class="list-group-item list-group-item-action" @click="currentSection = SprintSection.Charts" :class="{ active: (currentSection == SprintSection.Charts)}">Charts</a>
+        </div>
+      </div>
+      <div class="col-9">
+        <SprintGeneral v-if="currentSection == SprintSection.General" :sprintData="sprintData" @saveForm="saveForm"></SprintGeneral>
+        <SprintTeamMembers v-if="currentSection == SprintSection.TeamMembers" :sprintData="sprintData" @addTeamMemberSprint="addTeamMemberSprint"></SprintTeamMembers>
+      </div>
     </div>
-    <SprintGeneral :sprintData="sprintData" @saveForm="saveForm"></SprintGeneral>
-    <div v-for="teamMemberSprint in sprintData.teamMemberSprints" :key="teamMemberSprint.id">
-      <p>Name: {{ teamMemberSprint.teamMemberSprintName }}</p>
-    </div>
-    <button type="button" class="btn" @click="addTeamMemberSprint">Add</button>
   </div>
 </template>
 
@@ -24,14 +25,25 @@ import { Component } from 'vue-property-decorator';
 import TeamMemberSprint from '../models/team-member-sprint';
 import SprintData from '../models/sprint-data';
 import SprintGeneral from './SprintGeneral.vue';
+import SprintTeamMembers from './SprintTeamMembers.vue';
+
+enum SprintSection {
+  General,
+  TeamMembers,
+  Breakdown,
+  Charts,
+}
 
 @Component({
   components: {
     SprintGeneral,
+    SprintTeamMembers,
   },
 })
 export default class Sprint extends Vue {
+  private currentSection: SprintSection = SprintSection.General;
   private sprintData: SprintData = new SprintData();
+  private SprintSection = SprintSection;
 
   private addTeamMemberSprint(): void {
     this.sprintData.teamMemberSprints.push(new TeamMemberSprint());

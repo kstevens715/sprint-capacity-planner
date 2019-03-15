@@ -8,7 +8,7 @@
         </li>
       </ul>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
       <router-view :sprints="sprints" @sprintCreated="addSprint"></router-view>
      </div>
   </div>

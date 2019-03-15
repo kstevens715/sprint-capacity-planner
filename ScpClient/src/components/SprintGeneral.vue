@@ -29,7 +29,7 @@ import SprintData from '../models/sprint-data';
 })
 export default class SprintGeneral extends Vue {
   private saveForm(): void {
-    this.$emit("saveForm");
+    this.$emit('saveForm');
   }
 }
 </script>
